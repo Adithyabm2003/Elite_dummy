@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             version="2.2">
+    <persistence-unit name="MyPersistenceUnit">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <!-- Entity classes -->
+        <class>com.retailstore.models.Product</class>
+        <class>com.retailstore.models.Customer</class>
+        <class>com.retailstore.models.Seller</class>
+        <class>com.retailstore.models.Order</class>
+        <class>com.retailstore.models.Category</class>
+        <class>com.retailstore.models.Cart</class>
+
+        <!-- JDBC properties -->
+        <properties>
+            <property name="javax.persistence.jdbc.url"
+                      value="jdbc:mysql://localhost:3306/store" />
+            <property name="javax.persistence.jdbc.user"
+                      value="Adithya" />
+            <property name="javax.persistence.jdbc.password"
+                      value="Adithya" />
+            <property name="javax.persistence.jdbc.driver"
+                      value="com.mysql.cj.jdbc.Driver" />
+
+            <!-- Hibernate-specific properties -->
+            <property name="hibernate.dialect"
+                      value="org.hibernate.dialect.MySQL8Dialect" />
+            <property name="hibernate.hbm2ddl.auto" value="update" />
+            <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.format_sql" value="true" />
+
+            <!-- Transaction settings -->
+            <property name="hibernate.transaction.jta.platform" value="enable" />
+        </properties>
+    </persistence-unit>
+</persistence>

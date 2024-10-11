@@ -1,0 +1,53 @@
+package com.GroceryStore.CapStone.Project.repositories;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+import com.GroceryStore.CapStone.Project.Models.Order;
+
+import java.util.List;
+
+@Repository
+public class OrderRepository {
+
+    @PersistenceContext
+    private EntityManager entityManager;
+
+    @Transactional
+    public List<Order> findAll() {
+        TypedQuery<Order> query = entityManager.createQuery("from Order", Order.class);
+        return query.getResultList();
+    }
+
+    @Transactional
+    public List<Order> findByCustomerId(Long customerId) {
+        TypedQuery<Order> query = entityManager.createQuery("from Order where customer.id = :customerId", Order.class);
+        query.setParameter("customerId", customerId);
+        return query.getResultList();
+    }
+
+    @Transactional
+    public Order findById(Long orderId) {
+        return entityManager.find(Order.class, orderId); // Use find method to get the order by ID
+    }
+
+    @Transactional
+    public Order save(Order order) {
+        if (order.getId() == null) {
+            entityManager.persist(order);  // Save new order
+        } else {
+            entityManager.merge(order);  // Update existing order
+        }
+        return order;
+    }
+
+    @Transactional
+    public void deleteById(Long orderId) {
+        Order order = findById(orderId);
+        if (order != null) {
+            entityManager.remove(order);  // Remove the order if it exists
+        }
+    }
+}
