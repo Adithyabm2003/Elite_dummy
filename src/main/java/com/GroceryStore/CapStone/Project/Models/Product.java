@@ -6,6 +6,8 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "products")
 public class Product {
@@ -22,10 +24,12 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
+    @JsonBackReference
     private Category category;
 
     @ManyToOne
     @JoinColumn(name = "seller_id", nullable = false)
+    @JsonBackReference
     private Seller seller;
 
     // Constructors, Getters, Setters, etc.

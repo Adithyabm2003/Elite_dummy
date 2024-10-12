@@ -3,6 +3,8 @@ package com.GroceryStore.CapStone.Project.Models;
 import jakarta.persistence.*;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "categories")
 public class Category {
@@ -14,6 +16,7 @@ public class Category {
     private String name;
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Product> products;
 
     // Constructors, Getters, Setters, etc.

@@ -2,6 +2,7 @@ package com.GroceryStore.CapStone.Project.Models;
 
 import jakarta.persistence.*;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "customers")
@@ -18,12 +19,12 @@ public class Customer {
     private String address;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    @JsonManagedReference // This is correct, as Customer is the parent
     private List<Order> orders;
 
     // Constructors, Getters, Setters, etc.
-    
-    public Customer() {
-    }
+
+    public Customer() {}
 
     public Customer(String name, String email, String address) {
         this.name = name;

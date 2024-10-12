@@ -23,8 +23,8 @@ public class OrderRepository {
 
     @Transactional
     public List<Order> findByCustomerId(Long customerId) {
-        TypedQuery<Order> query = entityManager.createQuery("from Order where customer.id = :customerId", Order.class);
-        query.setParameter("customerId", customerId);
+        TypedQuery<Order> query = entityManager.createQuery("from Order where customer.id = :customer_id", Order.class);
+        query.setParameter("customer_id", customerId);
         return query.getResultList();
     }
 

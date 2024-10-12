@@ -3,6 +3,7 @@ package com.GroceryStore.CapStone.Project.Models;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "orders")
@@ -14,25 +15,25 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)
+    @JsonBackReference // Change this to prevent recursion during serialization
     private Customer customer;
 
     @Temporal(TemporalType.TIMESTAMP)
-    private Date orderDate;
+    private Date order_date;
 
-    private String orderStatus;
+    private String order_status;
 
-    private BigDecimal totalAmount;
+    private BigDecimal total_amount;
 
     // Constructors, Getters, Setters, etc.
-    
-    public Order() {
-    }
+
+    public Order() {}
 
     public Order(Customer customer, Date orderDate, String orderStatus, BigDecimal totalAmount) {
         this.customer = customer;
-        this.orderDate = orderDate;
-        this.orderStatus = orderStatus;
-        this.totalAmount = totalAmount;
+        this.order_date = orderDate;
+        this.order_status = orderStatus;
+        this.total_amount = totalAmount;
     }
 
     public Long getId() {
@@ -52,26 +53,26 @@ public class Order {
     }
 
     public Date getOrderDate() {
-        return orderDate;
+        return order_date;
     }
 
     public void setOrderDate(Date orderDate) {
-        this.orderDate = orderDate;
+        this.order_date = orderDate;
     }
 
     public String getOrderStatus() {
-        return orderStatus;
+        return order_status;
     }
 
     public void setOrderStatus(String orderStatus) {
-        this.orderStatus = orderStatus;
+        this.order_status = orderStatus;
     }
 
     public BigDecimal getTotalAmount() {
-        return totalAmount;
+        return total_amount;
     }
 
     public void setTotalAmount(BigDecimal totalAmount) {
-        this.totalAmount = totalAmount;
+        this.total_amount = totalAmount;
     }
 }
