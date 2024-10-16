@@ -4,7 +4,7 @@ pipeline {
         timeout(time: 14, unit: 'MINUTES') // General job timeout, not specific to Git
     }
     environment {
-        SPRING_BOOT_REPO = 'https://github.com/bharatchhajer/project-retail-store-sb-restful-hateoas-hiber-sec-mysql.git'
+        SPRING_BOOT_REPO = 'https://github.com/Adithyabm2003/Elite_dummy.git'
     }
 
     stages {
