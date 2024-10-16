@@ -31,7 +31,7 @@ pipeline {
                                 echo 'Starting Spring Boot backend...'
                                 //powershell 'java -jar target/project-retail-store-sb-restful-hateoas-hiber-sec-mysql-0.0.1-SNAPSHOT.jar | Tee-Object -FilePath app-back.log'
                                 powershell '''  
-                                Start-Process -FilePath "java" -ArgumentList "-jar target/project-retail-store-sb-restful-hateoas-hiber-sec-mysql-0.0.1-SNAPSHOT.jar" -NoNewWindow -RedirectStandardOutput "app-front.log" -RedirectStandardError "app-error.log"  
+                                Start-Process -FilePath "java" -ArgumentList "-jar target/CapStone-Project-0.0.1-SNAPSHOT.jar" -NoNewWindow -RedirectStandardOutput "app-front.log" -RedirectStandardError "app-error.log"  
                                 '''
                          //   }
                         }
