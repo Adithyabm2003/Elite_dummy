@@ -17,9 +17,16 @@ public class OrderRepository {
 
     @Transactional
     public List<Order> findAll() {
-        TypedQuery<Order> query = entityManager.createQuery("from Order", Order.class);
-        return query.getResultList();
+        try {
+            TypedQuery<Order> query = entityManager.createQuery("from Order", Order.class);
+            return query.getResultList();
+        } catch (Exception e) {
+            // Log the error (optional)
+            // e.g., logger.error("Error fetching orders", e);
+            throw new RuntimeException("Failed to fetch orders", e);
+        }
     }
+
 
     @Transactional
     public List<Order> findByCustomerId(Long customerId) {

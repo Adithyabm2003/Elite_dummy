@@ -3,6 +3,7 @@ package com.GroceryStore.CapStone.Project.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import com.GroceryStore.CapStone.Project.Models.Product;
@@ -34,8 +35,9 @@ public class ProductController {
     }
 
     // Add new product
-    @PostMapping
+    @PostMapping(consumes = "application/json", produces = MediaType.APPLICATION_JSON_VALUE)
     public Product addProduct(@RequestBody Product product) {
         return productRepository.save(product);
     }
+
 }

@@ -21,19 +21,19 @@ public class CustomerController {
     }
 
     // Get customer by ID
-    @GetMapping("/{customerId}")
+    @GetMapping(value="/{customerId}",produces="application/json")
     public Customer getCustomerById(@PathVariable Long customerId) {
         return customerRepository.findById(customerId);
     }
 
     // Add new customer
-    @PostMapping
+    @PostMapping(produces="application/json")
     public Customer addCustomer(@RequestBody Customer customer) {
         return customerRepository.save(customer);
     }
 
     // Update existing customer
-    @PutMapping("/{customerId}")
+    @PutMapping(value="/{customerId}",produces="application/json")
     public Customer updateCustomer(@PathVariable Long customerId, @RequestBody Customer customerDetails) {
         Customer customer = customerRepository.findById(customerId);
         if (customer != null) {

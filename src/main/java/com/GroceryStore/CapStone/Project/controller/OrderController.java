@@ -1,7 +1,9 @@
 package com.GroceryStore.CapStone.Project.controller;
 
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import com.GroceryStore.CapStone.Project.Models.Order; // Ensure this package name is correct
@@ -15,22 +17,26 @@ public class OrderController {
     private OrderRepository orderRepository;
 
     // Get all orders
-    @GetMapping
+    @GetMapping(produces="application/json")
     public List<Order> getAllOrders() {
         return orderRepository.findAll();
     }
 
     // Get order by ID
-    @GetMapping("/{orderId}")
+    @GetMapping(value="/{orderId}",produces="application/json")
     public Order getOrderById(@PathVariable Long orderId) {
         return orderRepository.findById(orderId);
     }
 
     // Add new order
-    @PostMapping
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public Order addOrder(@RequestBody Order order) {
+        if (order.getOrderDate() == null) {
+            order.setOrderDate(new Date()); // Automatically set the current date
+        }
         return orderRepository.save(order);
     }
+
 
     // Update existing order
     @PutMapping("/{orderId}")
